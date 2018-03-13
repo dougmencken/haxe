@@ -1,0 +1,4 @@
+--cwd  tests/unit
+compile-lua.hxml
+-cmd lua bin/unit.lua
+

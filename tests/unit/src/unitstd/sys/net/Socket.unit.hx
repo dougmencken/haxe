@@ -1,3 +1,4 @@
+
 #if sys
 // bind & listen
 var s = new sys.net.Socket();
@@ -12,6 +13,7 @@ var c = new sys.net.Socket();
 c.connect(host, port);
 c.input != null;
 c.output != null;
+
 
 // select when accept() would succeed
 var select = sys.net.Socket.select([s], [s], [s], 0.01);
@@ -39,20 +41,21 @@ select.read.length == 0;
 select.write.length == 0;
 select.others.length == 0;
 
+trace("WRITE");
 // write
 w.output.writeByte(97);
 w.output.writeByte(98);
 w.output.writeByte(99);
 w.close();
 
-// read
-c.waitForRead();
-var select = sys.net.Socket.select([c], [c], [c]);
-select.read.length == 1;
-select.write.length == 1;
-select.others.length == 0;
-c.read() == "abc";
+// // read
+// c.waitForRead();
+// var select = sys.net.Socket.select([c], [c], [c]);
+// select.read.length == 1;
+// select.write.length == 1;
+// select.others.length == 0;
+// c.read() == "abc";
 
-c.close();
-s.close();
+// c.close();
+// s.close();
 #end
